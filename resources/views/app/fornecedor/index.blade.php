@@ -1,20 +1,17 @@
 <h3>Fornecedores</h3>
+
 <br><br>
-@if(count($fornecedores) > 0 && count($fornecedores) < 10)
-    <h4>Existem alguns fornecedores cadastrados</h4>
-@elseif(count($fornecedores) > 10)
-    <h4>Existem vários fornecedores cadastrados</h4>
-@else
-    <h4>Ainda não existem fornecedores cadastrados</h4>
-@endif
-<br><br>
+@isset($fornecedores)
 Fornecedor: {{ $fornecedores[0]['nome'] }} <br>
 Status: {{ $fornecedores[0]['status'] }} <br>
-<br><br>
-@if(!($fornecedores[0]['status'] == 'S'))
-    Fornecedor inativo - Condição com IF, operador de negação (!)
-@endif
-<br><br>
-@unless($fornecedores[0]['status'] == 'S') {{-- Se o retorno da condição for false --}}
-    Fornecedor inativo - Condição com UNLESS, operador de negação (!)
-@endunless
+CNPJ: {{ $fornecedores[0]['cnpj'] }} <br>
+<br><br><br><br>
+Fornecedor: {{ $fornecedores[1]['nome'] }} <br>
+Status: {{ $fornecedores[1]['status'] }} <br>
+    @isset($fornecedores[1]['cnpj'])
+        CNPJ: {{ $fornecedores[1]['cnpj'] }}
+        @empty($fornecedores[1]['cnpj'])
+            Não informado
+        @endempty
+    @endisset
+@endisset
